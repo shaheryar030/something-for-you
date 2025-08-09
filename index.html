@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>I Love You ❤️</title>
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    html,body{ height:100%; margin:0; }
+    body{
+      font-family: "Dancing Script", cursive, serif;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      background: black;
+      overflow:hidden;
+    }
+    .hero {
+      position: relative;
+      z-index: 5;
+      text-align:center;
+      color: red;
+      text-shadow:
+        0 0 20px rgba(255,0,0,0.8),
+        0 0 40px rgba(255,0,0,0.6);
+    }
+    .hero h1{
+      margin: 0;
+      font-size: clamp(2.5rem, 6vw, 6rem);
+      animation: heartbeat 2s infinite ease-in-out;
+    }
+    @keyframes heartbeat{
+      0%{ transform: scale(1); }
+      40%{ transform: scale(1.1); }
+      100%{ transform: scale(1); }
+    }
+    .particles{
+      position: absolute;
+      inset: 0;
+      z-index: 2;
+      pointer-events: none;
+      overflow: hidden;
+    }
+    .particle{
+      position: absolute;
+      bottom: -10vh;
+      will-change: transform, opacity;
+      user-select: none;
+      filter: drop-shadow(0 0 6px rgba(255,0,0,0.8));
+      color: red;
+      opacity: 0.9;
+    }
+    @keyframes floatUp {
+      0% { transform: translateY(0) translateX(0) rotate(0deg); opacity: 1; }
+      100% { transform: translateY(-130vh) translateX(40px) rotate(20deg); opacity: 0; }
+    }
+    .btn {
+      display:inline-block;
+      padding:.6rem 1.1rem;
+      border-radius: 999px;
+      background: red;
+      color:#fff;
+      text-decoration:none;
+      font-weight:600;
+      box-shadow: 0 6px 18px rgba(255,0,0,0.5);
+      cursor:pointer;
+      border: none;
+    }
+  </style>
+</head>
+<body>
+  <audio id="bg-music" src="https://cdn.pixabay.com/download/audio/2022/02/23/audio_8a77f3d308.mp3?filename=romantic-music-11793.mp3" autoplay loop></audio>
+  <div class="particles"></div>
+  <div class="hero">
+    <h1>I ❤️ You</h1>
+    <p style="font-size:1.5rem;margin-top:0.5rem;">You are my everything</p>
+    <button id="proposeBtn" class="btn" style="margin-top:18px;">Tap to propose</button>
+  </div>
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const container = document.querySelector('.particles');
+    const heart = "❤️";
+    const count = 50;
+    for (let i = 0; i < count; i++) {
+      const el = document.createElement('div');
+      el.className = 'particle';
+      el.innerText = heart;
+      el.style.left = (Math.random() * 100) + '%';
+      el.style.fontSize = (18 + Math.random() * 64) + 'px';
+      const dur = (6 + Math.random() * 8).toFixed(2);
+      el.style.animation = `floatUp ${dur}s linear infinite`;
+      el.style.animationDelay = (Math.random() * -dur) + 's';
+      container.appendChild(el);
+    }
+    document.getElementById('proposeBtn').addEventListener('click', () => {
+      alert("Will you be mine forever? 💖");
+    });
+  });
+</script>
+</body>
+</html>
